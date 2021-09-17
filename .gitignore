@@ -76,6 +76,7 @@ Debug/
 .extSettings
 # .project
 *.launch
+.settings/
 
 app.mk
 Application.props
