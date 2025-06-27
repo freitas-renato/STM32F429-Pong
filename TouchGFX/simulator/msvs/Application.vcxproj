@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\gui\src\gamescreen_screen\GameScreenPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\gamescreen_screen\GameScreenView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\gamescreen_screen\GameScreenViewBase.cpp"/>
+    <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xlsx"/>
@@ -173,6 +174,9 @@
     <ClInclude Include="..\..\gui\include\gui\gamescreen_screen\GameScreenPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\gamescreen_screen\GameScreenView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\gamescreen_screen\GameScreenViewBase.hpp"/>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\DirectFrameBufferVideoController.hpp"/>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\MJPEGDecoder.hpp"/>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

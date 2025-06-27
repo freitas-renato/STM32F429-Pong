@@ -58,10 +58,39 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define PH_IN2_Pin GPIO_PIN_2
-#define PH_IN2_GPIO_Port GPIOE
-#define NSLEEP_Pin GPIO_PIN_3
-#define NSLEEP_GPIO_Port GPIOE
+#define PWR_BUTTON_IT_Pin GPIO_PIN_2
+#define PWR_BUTTON_IT_GPIO_Port GPIOE
+#define PWR_BUTTON_IT_EXTI_IRQn EXTI2_IRQn
+#define RED_LED_Pin GPIO_PIN_5
+#define RED_LED_GPIO_Port GPIOE
+#define BLUE_LED_Pin GPIO_PIN_6
+#define BLUE_LED_GPIO_Port GPIOE
+#define P_SCK_Pin GPIO_PIN_6
+#define P_SCK_GPIO_Port GPIOF
+#define D_CS_Pin GPIO_PIN_1
+#define D_CS_GPIO_Port GPIOC
+#define BUZZER_Pin GPIO_PIN_7
+#define BUZZER_GPIO_Port GPIOA
+#define NSLEEP_Pin GPIO_PIN_12
+#define NSLEEP_GPIO_Port GPIOB
+#define PH_IN2_Pin GPIO_PIN_15
+#define PH_IN2_GPIO_Port GPIOB
+#define STAT1_out_Pin GPIO_PIN_11
+#define STAT1_out_GPIO_Port GPIOD
+#define STAT2_out_Pin GPIO_PIN_12
+#define STAT2_out_GPIO_Port GPIOD
+#define DISP_BLIGHT_Pin GPIO_PIN_8
+#define DISP_BLIGHT_GPIO_Port GPIOC
+#define CAP_ALERT0_Pin GPIO_PIN_15
+#define CAP_ALERT0_GPIO_Port GPIOA
+#define CAP_ALERT0_EXTI_IRQn EXTI15_10_IRQn
+#define CAP_ALERT2_Pin GPIO_PIN_11
+#define CAP_ALERT2_GPIO_Port GPIOC
+#define CAP_ALERT2_EXTI_IRQn EXTI15_10_IRQn
+#define CAP_ALERT1_Pin GPIO_PIN_12
+#define CAP_ALERT1_GPIO_Port GPIOC
+#define CAP_ALERT1_EXTI_IRQn EXTI15_10_IRQn
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
@@ -71,5 +100,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

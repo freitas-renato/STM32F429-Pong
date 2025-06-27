@@ -1,21 +1,30 @@
 
 {
   "Application": {
-    "Name": "Pong",
+    "Name": "Pong_v2",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "AvailableColorDepths": [ 16 ],
     "AvailableLCDs":
     {
       "16": "LCD16bpp"
     },
-    "AvailableResolutions" : [
+    "AvailableResolutions": [
       {
         "Width": 240,
         "Height": 320
       }
     ],
-    "PostGenerateTargetCommand" : "touchgfx update_project --project-file=../Pong.ioc --platform=m4",
-    "Family" : "STM32F4"
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "Family": "STM32F4",
+    "SubFamily": "STM32F429/439",
+    "Platform": "m4",
+    "Toolchain": "CMake",
+    "ProjectFile": "../Pong_v2.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [
+    ],
+    "AdditionalFeatures": [
+    ]
   },
-  "Version": "4.16.1"
+  "Version": "4.25.0"
 }

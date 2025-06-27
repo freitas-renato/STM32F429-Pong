@@ -16,7 +16,7 @@ static uint32_t m_counter;
 
 
 void buzzer_init(void) {
-    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim14, TIM_CHANNEL_1);
 
     m_volume = 0.8;
     buzzer_set_frequency(1000);
@@ -25,12 +25,12 @@ void buzzer_init(void) {
 void buzzer_set_volume(float volume) {
     m_volume = volume;
     uint32_t compare = (uint32_t) ((float) m_counter * m_volume);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, compare);
+    __HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, compare);
 }
 
 void buzzer_set_frequency(uint16_t frequency) {
     if (frequency == 0) {
-        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
+        __HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, 0);
         return;
     }
 
@@ -38,16 +38,16 @@ void buzzer_set_frequency(uint16_t frequency) {
     m_counter = TIM_FREQUENCY_HZ / frequency;
     uint32_t compare = (uint32_t) ((float) m_counter * m_volume);
 
-    __HAL_TIM_SET_AUTORELOAD(&htim3, m_counter);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, compare);
+    __HAL_TIM_SET_AUTORELOAD(&htim14, m_counter);
+    __HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, compare);
 }
 
 void buzzer_start(void) {
-    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim14, TIM_CHANNEL_1);
 }
 
 void buzzer_stop(void) {
-    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Stop(&htim14, TIM_CHANNEL_1);
 }
 
 void buzzer_click(void) {

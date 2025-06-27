@@ -17,7 +17,7 @@ class GameScreenViewBase : public touchgfx::View<GameScreenPresenter>
 {
 public:
     GameScreenViewBase();
-    virtual ~GameScreenViewBase() {}
+    virtual ~GameScreenViewBase();
     virtual void setupScreen();
 
 protected:
@@ -58,8 +58,9 @@ private:
     /*
      * Canvas Buffer Size
      */
-    static const uint16_t CANVAS_BUFFER_SIZE = 4800;
+    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
     uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
+
 };
 
 #endif // GAMESCREENVIEWBASE_HPP

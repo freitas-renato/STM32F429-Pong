@@ -142,4 +142,3 @@ __weak void CAP_Task(void *argument) {
 
 /* USER CODE END Application */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

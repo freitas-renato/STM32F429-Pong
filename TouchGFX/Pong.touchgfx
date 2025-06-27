@@ -2,275 +2,166 @@
   "Application": {
     "Screens": [
       {
+        "Name": "GameScreen",
+        "CanvasBufferSize": 4800,
         "Components": [
           {
             "Type": "Box",
-            "Color": {
-              "Red": 0,
-              "Green": 0,
-              "Blue": 0
-            },
-            "Alpha": 255,
             "Name": "background",
-            "X": 0,
-            "Y": 0,
             "Width": 320,
-            "Height": 240,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
+            "Height": 240
           },
           {
             "Type": "Box",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 255,
             "Name": "ball",
             "X": 153,
             "Y": 113,
             "Width": 10,
             "Height": 10,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "TextArea",
-            "TextId": "SingleUseId1",
-            "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
-            },
-            "Alpha": 255,
-            "AutoSize": false,
-            "LineSpacing": 0,
-            "Wildcard1": {
-              "UseBuffer": true,
-              "BufferSize": 10
-            },
+            }
+          },
+          {
+            "Type": "TextArea",
             "Name": "a_position",
             "X": 49,
             "Y": 208,
             "Width": 92,
             "Height": 25,
             "Visible": false,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "TextArea",
-            "TextId": "SingleUseId2",
+            "TextId": "__SingleUse_BFAF",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
             },
-            "Alpha": 255,
-            "AutoSize": false,
-            "LineSpacing": 0,
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10
-            },
+            }
+          },
+          {
+            "Type": "TextArea",
             "Name": "b_position",
             "X": 175,
             "Y": 208,
             "Width": 92,
             "Height": 25,
             "Visible": false,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
+            "TextId": "__SingleUse_34W8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "Line",
-            "Color": {
-              "Red": 15,
-              "Green": 102,
-              "Blue": 240
-            },
-            "Alpha": 255,
-            "StartX": 7,
-            "StartY": 5,
-            "EndX": 7,
-            "EndY": 45,
-            "LineWidth": 10,
-            "LineEndingStyle": "Round",
             "Name": "paddleA",
             "X": 15,
             "Y": 95,
             "Width": 15,
             "Height": 50,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
+            "Color": {
+              "Red": 15,
+              "Green": 102,
+              "Blue": 240
+            },
+            "StartX": 7.0,
+            "StartY": 5.0,
+            "EndX": 7.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
           },
           {
             "Type": "Line",
-            "Color": {
-              "Red": 219,
-              "Green": 19,
-              "Blue": 19
-            },
-            "Alpha": 255,
-            "StartX": 7,
-            "StartY": 5,
-            "EndX": 7,
-            "EndY": 45,
-            "LineWidth": 10,
-            "LineEndingStyle": "Round",
             "Name": "paddleB",
             "X": 290,
             "Y": 95,
             "Width": 15,
             "Height": 50,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
+            "Color": {
+              "Red": 219,
+              "Green": 19,
+              "Blue": 19
+            },
+            "StartX": 7.0,
+            "StartY": 5.0,
+            "EndX": 7.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
           },
           {
             "Type": "TextArea",
-            "TextId": "SingleUseId3",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Alpha": 255,
-            "AutoSize": false,
-            "LineSpacing": 0,
-            "Wildcard1": {
-              "TextId": "SingleUseId8",
-              "UseBuffer": true,
-              "BufferSize": 5
-            },
             "Name": "placarA",
             "X": 101,
             "Y": 8,
             "Width": 40,
             "Height": 24,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "TextArea",
-            "TextId": "SingleUseId5",
+            "TextId": "__SingleUse_VE86",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
             },
-            "Alpha": 255,
-            "AutoSize": false,
-            "LineSpacing": 0,
             "Wildcard1": {
-              "TextId": "SingleUseId6",
+              "TextId": "__SingleUse_ZWZF",
               "UseBuffer": true,
               "BufferSize": 5
-            },
+            }
+          },
+          {
+            "Type": "TextArea",
             "Name": "placarB",
             "X": 175,
             "Y": 8,
             "Width": 40,
             "Height": 24,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "TextArea",
-            "TextId": "SingleUseId7",
+            "TextId": "__SingleUse_7HFN",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
             },
-            "Alpha": 255,
-            "AutoSize": false,
-            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "__SingleUse_OUZH",
+              "UseBuffer": true,
+              "BufferSize": 5
+            }
+          },
+          {
+            "Type": "TextArea",
             "Name": "textPlacar",
             "X": 141,
             "Y": 8,
             "Width": 34,
             "Height": 24,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
+            "TextId": "__SingleUse_VU52",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
           }
         ],
-        "Interactions": [],
-        "Name": "GameScreen",
-        "OverrideDefaultBufferSize": false,
-        "CanvasBufferSize": 4800
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],
-    "TextEntries": [
-      {
-        "TextEntryId": "SingleUseId1",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId2",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId3",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId5",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId6",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId7",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId8",
-        "IsResource": false
-      }
-    ],
     "Name": "Pong",
     "Resolution": {
       "Width": 240,
@@ -279,7 +170,6 @@
     "SelectedColorDepth": 16,
     "StartupScreenName": "GameScreen",
     "SelectedStartupLanguage": "GB",
-    "Skin": "Blue",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",
     "AvailableColorDepths": [
@@ -307,7 +197,7 @@
     },
     "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
     "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
-    "PostGenerateTargetCommand": "touchgfx update_project --project-file=../Pong.ioc --platform=m4",
+    "PostGenerateTargetCommand": "touchgfx update_project",
     "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
     "RunSimulatorCommand": "build\\bin\\simulator.exe",
     "LandscapeSkinX": 0,
@@ -315,7 +205,14 @@
     "PortraitSkinX": 0,
     "PortraitSkinY": 0,
     "DisplayOrientation": "Landscape",
-    "Family": "STM32F4"
+    "Family": "STM32F4",
+    "SubFamily": "STM32F429/439",
+    "Toolchain": "CMake",
+    "Platform": "m4",
+    "ProjectFile": "../Pong_v2.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": []
   },
-  "Version": "4.16.1"
+  "Version": "4.25.0"
 }

@@ -3,8 +3,7 @@
 #include <fonts/GeneratedFont.hpp>
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
-KEEP extern const touchgfx::GlyphNode glyphs_verdana_40_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE =
-{
+KEEP extern const touchgfx::GlyphNode glyphs_verdana_40_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
     {     0, 0x002C,   9,  13,   6,   3,  15,   0,  18, 0x00 },
     {    65, 0x002D,  13,   4,  15,   3,  18,  18,  19, 0x00 },
     {    93, 0x002E,   6,   6,   6,   4,  15,  37,  14, 0x00 },
@@ -81,18 +80,20 @@ KEEP extern const touchgfx::GlyphNode glyphs_verdana_40_4bpp[] FONT_TABLE_LOCATI
 };
 
 // verdana_40_4bpp
-extern const touchgfx::GlyphNode glyphs_verdana_40_4bpp[];
-extern const uint8_t unicodes_verdana_40_4bpp_0[];
-extern const uint8_t* const unicodes_verdana_40_4bpp[] =
-{
+FONT_TABLE_LOCATION_FLASH_PRAGMA
+KEEP extern const touchgfx::GlyphNode glyphs_verdana_40_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE;
+FONT_GLYPH_LOCATION_FLASH_PRAGMA
+KEEP extern const uint8_t unicodes_verdana_40_4bpp_0[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
+FONT_SEARCHTABLE_LOCATION_FLASH_PRAGMA
+KEEP extern const uint8_t* const unicodes_verdana_40_4bpp[] FONT_SEARCHTABLE_LOCATION_FLASH_ATTRIBUTE = {
     unicodes_verdana_40_4bpp_0
 };
-extern const touchgfx::KerningNode kerning_verdana_40_4bpp[];
-
+FONT_KERNING_LOCATION_FLASH_PRAGMA
+KEEP extern const touchgfx::KerningNode kerning_verdana_40_4bpp[] FONT_KERNING_LOCATION_FLASH_ATTRIBUTE;
 touchgfx::GeneratedFont& getFont_verdana_40_4bpp();
 
 touchgfx::GeneratedFont& getFont_verdana_40_4bpp()
 {
-    static touchgfx::GeneratedFont verdana_40_4bpp(glyphs_verdana_40_4bpp, 73, 40, 8, 4, 1, 2, 2, unicodes_verdana_40_4bpp, kerning_verdana_40_4bpp, 63, 0, 0);
+    static touchgfx::GeneratedFont verdana_40_4bpp(glyphs_verdana_40_4bpp, 73, 48, 40, 0, 0, 4, 1, 2, 2, unicodes_verdana_40_4bpp, kerning_verdana_40_4bpp, 63, 0, 0, 0);
     return verdana_40_4bpp;
 }
