@@ -81,3 +81,5 @@ Debug/
 app.mk
 Application.props
 *_backup.touchgfx
+
+config_default/
