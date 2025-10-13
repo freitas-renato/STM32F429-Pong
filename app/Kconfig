@@ -1,0 +1,5 @@
+# # Include custom drivers Kconfig
+# rsource "../drivers/Kconfig"
+
+# Main application Kconfig
+source "Kconfig.zephyr"

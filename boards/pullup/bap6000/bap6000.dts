@@ -1,0 +1,205 @@
+/*
+ * Copyright (c) 2017 Linaro Limited
+ * Copyright (c) 2024 STMicroelectronics
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+#include <st/f4/stm32f429Xi.dtsi>
+#include <st/f4/stm32f429z(e-g)tx-pinctrl.dtsi>
+#include <zephyr/dt-bindings/mipi_dbi/mipi_dbi.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+	model = "Bomba de Amostragem BAP6000";
+	compatible = "pullup,bap6000";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+		zephyr,ccm = &ccm0;
+		zephyr,display = &st7789v;
+	};
+
+	status_leds: status-leds {
+		compatible = "gpio-leds";
+
+		led_red: led-red {
+			gpios = <&gpioe 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			label = "LED_RED";
+		};
+
+		led_yellow: led-yellow {
+			gpios = <&gpioe 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			label = "LED_YELLOW";
+		};
+	};
+
+	mipi_dbi {
+		compatible = "zephyr,mipi-dbi-spi";
+		dc-gpios = <&gpiog 3 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpioc 8 GPIO_ACTIVE_LOW>;
+		write-only;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		spi-dev = <&spi5>;
+		clock-frequency = <DT_FREQ_K(35700)>;
+
+		st7789v: st7789v@0 {
+			compatible = "sitronix,st7789v";
+			mipi-max-frequency = <35700000>;
+			reg = <0>;
+			width = <320>;
+			height = <240>;
+			x-offset = <0>;
+			y-offset = <0>;
+			vcom = <0x19>;
+			gctrl = <0x35>;
+			vrhs = <0x12>;
+			vdvs = <0x20>;
+			mdac = <0xA0>;  // rotates by 90 degrees
+			gamma = <0x01>;
+			colmod = <0x55>;
+			lcm = <0x2c>;
+			porch-param = [0c 0c 00 33 33];
+			cmd2en-param = [5a 69 02 01];
+			pwctrl1-param = [a4 a1];
+			pvgam-param = [D0 08 11 08 0c 15 39 33 50 36 13 14 29 2d];
+			nvgam-param = [D0 08 10 08 06 06 39 44 51 0b 16 14 2f 31];
+			ram-param = [00 F0];
+			rgb-param = [CD 08 14];
+			mipi-mode = "MIPI_DBI_MODE_SPI_4WIRE";
+			status = "okay";
+		};
+	};
+
+};
+
+&clk_lse {
+	status = "okay";
+	clock-frequency = <32768>;
+};
+
+&clk_hsi {
+	status = "okay";
+};
+
+&pll {
+	div-m = <8>;
+	mul-n = <150>;
+	div-p = <2>;
+	div-q = <7>;
+	clocks = <&clk_hsi>;
+	status = "okay";
+};
+
+&pllsai {
+	div-m = <8>;
+	mul-n = <60>;
+	div-r = <5>;
+	div-divr = <4>;
+	clocks = <&clk_hsi>;
+	status = "okay";
+};
+
+&rcc {
+	clocks = <&pll>;
+	clock-frequency = <DT_FREQ_M(150)>;
+	ahb-prescaler = <1>;
+	apb1-prescaler = <4>;
+	apb2-prescaler = <2>;
+};
+
+&rtc {
+	clocks = <&rcc STM32_CLOCK(APB1, 28)>,
+			<&rcc STM32_SRC_LSI RTC_SEL(2)>;
+	status = "okay";
+};
+
+&usart1 {
+	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+
+	touch_sensor_right: cap12xx@28 {
+		compatible = "microchip,cap12xx";
+		status = "okay";
+		reg = <0x28>;
+		int-gpios = <&gpioc 11 (GPIO_ACTIVE_LOW)>;
+		// poll-interval-ms = <50>;  // disabled on interrupt mode
+		input-codes = <INPUT_KEY_3>, <INPUT_KEY_4>;
+		repeat;
+		sensitivity-delta-sense = <64>;
+		sensor-gain = <4>;
+	};
+};
+
+&i2c3 {
+	pinctrl-0 = <&i2c3_scl_pa8 &i2c3_sda_pc9>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>;
+
+	touch_sensor_left: cap12xx@28 {
+		compatible = "microchip,cap12xx";
+		status = "okay";
+		reg = <0x28>;
+		int-gpios = <&gpioc 12 (GPIO_ACTIVE_LOW)>;
+		// poll-interval-ms = <50>;  // disabled on interrupt mode
+		input-codes = <INPUT_KEY_1>, <INPUT_KEY_2>;
+		repeat;
+		sensitivity-delta-sense = <64>;
+		sensor-gain = <4>;
+	};
+};
+
+&spi5 {
+	pinctrl-0 = <&spi5_sck_pf7 &spi5_miso_pf8 &spi5_mosi_pf9>;
+	pinctrl-names = "default";
+	status = "okay";
+	clock-frequency = <DT_FREQ_K(35700)>;
+	cs-gpios = <&gpioc 1 (GPIO_ACTIVE_LOW)>;
+};
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/* 32KB for bootloader */
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 DT_SIZE_K(32)>;
+			read-only;
+		};
+
+		/*
+		 * nvs subsystem requires 2 sectors with a max total of 32K
+		 * On F4 series, the only option is to use the following
+		 * partition, which is compatible with mcuboot usage.
+		 * Keep it commented in order it is not used by CI.
+		 *
+		 * storage_partition: partition@8000 {
+		 *	label = "storage";
+		 *	reg = <0x0008000 DT_SIZE_K(32)>;
+		 * };
+		 */
+
+		/* application image slot: 256KB */
+		slot0_partition: partition@20000 {
+			label = "image-0";
+			reg = <0x00020000 DT_SIZE_K(512)>;
+		};
+	};
+};

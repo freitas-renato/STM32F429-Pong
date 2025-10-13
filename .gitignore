@@ -83,3 +83,5 @@ Application.props
 *_backup.touchgfx
 
 config_default/
+
+build/

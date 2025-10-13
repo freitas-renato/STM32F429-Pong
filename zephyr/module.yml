@@ -1,0 +1,7 @@
+name: stm32pong_zephyr
+build:
+  cmake: .
+  kconfig: Kconfig
+  settings:
+    dts_root: .
+    board_root: .
