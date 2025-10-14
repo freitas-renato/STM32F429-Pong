@@ -1,14 +1,14 @@
 #include "app/gui/components/scoreboard.h"
 
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 static lv_group_t* m_scoreboard_group = NULL;
 
-static lv_obj_t* score_left_label = NULL;
+static lv_obj_t* score_left_label  = NULL;
 static lv_obj_t* score_right_label = NULL;
 
-static int m_score_left = 0;
+static int m_score_left  = 0;
 static int m_score_right = 0;
 
 void scoreboard_create(lv_obj_t* parent) {
@@ -53,9 +53,6 @@ void scoreboard_update(lv_obj_t* parent, int score_left, int score_right) {
     m_score_left  = score_left;
     m_score_right = score_right;
 
-    // lv_obj_t* score_left_label  = lv_obj_get_child(m_scoreboard_group, 0);
-    // lv_obj_t* score_right_label = lv_obj_get_child(m_scoreboard_group, 1);
-
     if (score_left_label != NULL) {
         char buf[4];
         snprintf(buf, sizeof(buf), "%d", m_score_left);
@@ -86,10 +83,6 @@ void scoreboard_show(lv_obj_t* parent, bool show) {
         // Scoreboard not created yet
         return;
     }
-
-    // lv_obj_t* score_left_label  = lv_obj_get_child(m_scoreboard_group, 0);
-    // lv_obj_t* score_right_label = lv_obj_get_child(m_scoreboard_group, 1);
-
     if (score_left_label != NULL && !show) {
         if (show) {
             lv_obj_clear_flag(score_left_label, LV_OBJ_FLAG_HIDDEN);

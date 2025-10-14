@@ -52,9 +52,6 @@ static void right_touch_input_cb(struct input_event *evt, void *user_data) {
     }
 }
 
-INPUT_CALLBACK_DEFINE(DEVICE_DT_GET(DT_NODELABEL(touch_sensor_left)), left_touch_input_cb, NULL);
-INPUT_CALLBACK_DEFINE(DEVICE_DT_GET(DT_NODELABEL(touch_sensor_right)), right_touch_input_cb, NULL);
-
 int touch_controller_init(void) {
     if (!device_is_ready(cap_dev_left)) {
         LOG_ERR("CAP12xx left device not ready.\n");
@@ -70,3 +67,6 @@ int touch_controller_init(void) {
 
     return 0;
 }
+
+INPUT_CALLBACK_DEFINE(DEVICE_DT_GET(DT_NODELABEL(touch_sensor_left)), left_touch_input_cb, NULL);
+INPUT_CALLBACK_DEFINE(DEVICE_DT_GET(DT_NODELABEL(touch_sensor_right)), right_touch_input_cb, NULL);

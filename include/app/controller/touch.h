@@ -5,4 +5,4 @@
 
 int touch_controller_init(void);
 
-#endif // TOUCH_CONTROLLER_H
+#endif  // TOUCH_CONTROLLER_H

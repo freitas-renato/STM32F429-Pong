@@ -1,7 +1,10 @@
 #include "app/gui/components/paddle.h"
 
-static enum PaddleType m_paddle_type = PADDLE_LEFT;
-static const int PADDLE_MOVE_STEP  = 5;  // Pixels to move per input
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(paddle_component, LOG_LEVEL_INF);
+
+static const int PADDLE_MOVE_STEP = 15;  // Pixels to move per input
 
 lv_obj_t* paddle_create(lv_obj_t* parent, enum PaddleType type) {
     if (parent == NULL) {
@@ -15,14 +18,23 @@ lv_obj_t* paddle_create(lv_obj_t* parent, enum PaddleType type) {
     lv_obj_set_size(paddle, PADDLE_WIDTH, PADDLE_HEIGHT);
     lv_obj_set_style_border_width(paddle, 0, 0);
 
-    m_paddle_type = type;
+    lv_color_t color = type == PADDLE_TYPE_LEFT ? lv_palette_main(LV_PALETTE_RED) : lv_palette_main(LV_PALETTE_BLUE);
 
-    lv_align_t align = type == PADDLE_LEFT ? LV_ALIGN_LEFT_MID : LV_ALIGN_RIGHT_MID;
-    int margin       = type == PADDLE_LEFT ? PADDLE_MARGIN : -PADDLE_MARGIN;
-    lv_color_t color = type == PADDLE_LEFT ? lv_palette_main(LV_PALETTE_RED) : lv_palette_main(LV_PALETTE_BLUE);
+    int paddle_x =
+        type == PADDLE_TYPE_LEFT ? PADDLE_MARGIN : (lv_disp_get_hor_res(NULL) - PADDLE_WIDTH - PADDLE_MARGIN);
+    int paddle_y      = (lv_disp_get_ver_res(NULL) - PADDLE_HEIGHT) / 2;
+    int screen_height = lv_disp_get_ver_res(NULL);
 
     lv_obj_set_style_bg_color(paddle, color, 0);
-    lv_obj_align(paddle, align, margin, 0);
+
+    lv_obj_set_x(paddle, paddle_x);
+    lv_obj_set_y(paddle, paddle_y);
+
+    lv_obj_update_layout(paddle);
+    LOG_INF(
+        "Paddle created: type=%s, position=(%d, %d), screen_height=%d", type == PADDLE_TYPE_LEFT ? "LEFT" : "RIGHT",
+        lv_obj_get_x(paddle), lv_obj_get_y(paddle), screen_height
+    );
 
     return paddle;
 }
@@ -36,12 +48,12 @@ void paddle_set_position(lv_obj_t* paddle, int32_t y) {
     lv_obj_set_y(paddle, y);
 }
 
-void paddle_move(lv_obj_t* paddle, enum PaddleMoveDirection direction) {
+void paddle_move(lv_obj_t* paddle, enum PaddleType type, enum PaddleMoveDirection direction) {
     if (paddle == NULL || direction == PADDLE_MOVE_NONE) {
         return;
     }
 
-    if (m_paddle_type == PADDLE_RIGHT) {
+    if (type == PADDLE_TYPE_RIGHT) {
         direction = -direction;  // Invert direction for right paddle
     }
 

@@ -7,6 +7,7 @@
 #include <zephyr/input/input.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/drivers/pwm.h>
 
 #include "app/controller/touch.h"
 #include "app/gui/views/homepage.h"
@@ -16,6 +17,8 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 static const struct gpio_dt_spec led_red    = GPIO_DT_SPEC_GET(DT_NODELABEL(led_red), gpios);
 static const struct gpio_dt_spec led_yellow = GPIO_DT_SPEC_GET(DT_NODELABEL(led_yellow), gpios);
+
+static const struct pwm_dt_spec buzzer_pwm = PWM_DT_SPEC_GET(DT_NODELABEL(buzzer));
 
 int main(void) {
     LOG_INF("Hello World from Zephyr!");
@@ -43,21 +46,23 @@ int main(void) {
         return 1;
     }
 
-    lv_obj_set_style_bg_color(lv_screen_active(), lv_color_hex(0x003a57), LV_PART_MAIN);
-
     lv_timer_handler();
     display_blanking_off(display_dev);
 
-    homepage_ui_create(NULL);
-    homepage_controller_init();
+    homepage_controller_init(lv_screen_active());
 
     gpio_pin_toggle(led_red.port, led_red.pin);
     gpio_pin_toggle(led_yellow.port, led_yellow.pin);
 
+    if (!pwm_is_ready_dt(&buzzer_pwm)) {
+        LOG_ERR("PWM device not ready");
+        return 1;
+    }
+
     for (;;) {
         // LOG_INF("Hello World from Zephyr!");
-        uint32_t ret = lv_timer_handler();
-        k_sleep(K_MSEC(ret));
+        lv_timer_handler();
+        k_sleep(K_MSEC(5));
     }
 
     return 0;

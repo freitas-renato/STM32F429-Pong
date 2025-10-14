@@ -1,5 +1,9 @@
 #include "app/gui/components/ball.h"
 
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(ball_component, LOG_LEVEL_INF);
+
 lv_obj_t* ball_create(lv_obj_t* parent, int radius) {
     if (parent == NULL) {
         parent = lv_screen_active();
@@ -12,7 +16,11 @@ lv_obj_t* ball_create(lv_obj_t* parent, int radius) {
     lv_obj_set_size(ball, radius * 2, radius * 2);
     lv_obj_set_style_border_width(ball, 0, 0);
     lv_obj_set_style_bg_color(ball, lv_color_white(), 0);
-    lv_obj_align(ball, LV_ALIGN_CENTER, 0, 0);
+    // lv_obj_align(ball, LV_ALIGN_CENTER, 0, 0);
+
+    int32_t parent_width  = lv_obj_get_width(parent);
+    int32_t parent_height = lv_obj_get_height(parent);
+    lv_obj_set_pos(ball, parent_width / 2, parent_height / 2);  // Initial position, can be updated later
 
     return ball;
 }
@@ -33,4 +41,5 @@ void ball_move(lv_obj_t* ball, int32_t dx, int32_t dy) {
     int32_t current_x = lv_obj_get_x(ball);
     int32_t current_y = lv_obj_get_y(ball);
     lv_obj_set_pos(ball, current_x + dx, current_y + dy);
+    LOG_DBG("Ball moved to: (%d, %d)", current_x + dx, current_y + dy);
 }

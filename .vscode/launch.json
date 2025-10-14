@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Zephyr",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/zephyr/zephyr.elf", // Path to your Zephyr executable
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "stlink", // Or "jlink", "pyocd", etc.
+            "device": "STM32F429ZETx", // Replace with your specific device
+            "runToEntryPoint": "main",
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 1
+            },
+        }
+    ]
+}

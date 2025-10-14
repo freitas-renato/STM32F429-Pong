@@ -13,13 +13,13 @@ project(stm32pong_zephyr)
 target_include_directories(app PRIVATE ${APP_INCLUDE_DIRECTORIES})
 
 set(APP_SOURCES
-    src/controller/touch.c
     src/common/rtos.c
     src/controller/gui.c
-    src/gui/views/homepage.c
+    src/controller/touch.c
     src/gui/components/paddle.c
     src/gui/components/ball.c
     src/gui/components/scoreboard.c
+    src/gui/views/homepage.c
     src/gui/views/homepage_controller.c
     src/main.c
 )
