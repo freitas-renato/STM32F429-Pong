@@ -80,3 +80,45 @@ To flash the application to the board, use:
 ```bash
 west flash
 ```
+
+## Alternative - this repo as the manifest repository
+
+You can also use this repository as the manifest repository for west. To do that, fist create a new folder for your Zephyr workspace, create a new python virtual environment and install west:
+
+
+```sh
+mkdir zephyr-wkspace
+cd zephyr-wkspace
+python -m venv .venv
+source .venv/bin/activate  # On Windows (PS) use: .venv\Scripts\activate.ps1
+pip install west
+```
+
+Then, clone this repository and initialize the west workspace:
+
+```sh
+git clone https://github.com/freitas-renato/STM32F429-Pong.git
+west init -l STM32F429-Pong
+west update
+```
+
+Install the west python dependencies:
+
+```sh
+west packages pip --install
+```
+
+If you haven't installed the Zephyr SDK yet, do it now and export the Zephyr CMake package:
+
+```sh
+west zephyr-sdk install
+west zephyr-export
+```
+
+Now you can build and flash the application as described above.
+
+```sh
+west build STM32F429-Pong/app -b bap6000 --pristine auto
+west flash
+```
+
